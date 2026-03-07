@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    tools:context=".view.auth.guestLoginActivity">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/returnBotton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:clickable="true"
+        android:contentDescription="Boton para regresar"
+        android:focusable="true"
+        android:tint="#000000"
+        app:backgroundTint="@color/green"
+        app:srcCompat="@drawable/dr_return_arrow" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/guestRegister"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/_25sdp"
+                    android:layout_marginTop="@dimen/_23sdp"
+                    android:autoSizeTextType="uniform"
+                    android:text="@string/registrarse_como_invitado"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_25sdp"
+                    android:fontFamily="@font/manropemedium"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/_170sdp"
+                        android:layout_height="@dimen/_170sdp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/im_guest"/>
+
+                    <EditText
+                        android:id="@+id/editTextGuestName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:layout_marginStart="@dimen/_22sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_40sdp"
+                        android:background="@drawable/dr_white_input_text"
+                        android:ems="10"
+                        android:hint="@string/ingresa_tu_nombre_de_invitado"
+                        android:inputType="textEmailAddress"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/editTextBackground"
+                        android:fontFamily="@font/manroperegular" />
+
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/guestLoginButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_40sdp"
+                    android:layout_marginEnd="@dimen/_40sdp"
+                    android:background="@drawable/dr_green_button"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:backgroundTint="@null"
+                    android:gravity="center"
+                    android:text="@string/ingresar"
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/manropemedium"
+                    android:textAllCaps="false"
+                    />
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+    </FrameLayout>
+
+</LinearLayout>
