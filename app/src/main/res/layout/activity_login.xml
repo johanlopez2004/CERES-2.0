@@ -63,11 +63,12 @@
                             android:background="@drawable/dr_white_input_text"
                             android:backgroundTint="#F2F3F7"
                             android:ems="10"
-                            android:hint="Número de Teléfono"
-                            android:inputType="phone"
-                            android:textAlignment="center"
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/editTextBackground" />
+
+                        android:hint="Número de Teléfono"
+                        android:inputType="phone"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/editTextBackground" />
 
                         <EditText
                             android:id="@+id/editTextTextPassword"

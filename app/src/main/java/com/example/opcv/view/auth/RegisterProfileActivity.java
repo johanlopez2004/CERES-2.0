@@ -76,8 +76,10 @@ public class RegisterProfileActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String nameString = name.getText().toString();
                 String lastNameString = lastName.getText().toString();
+
                 String telefonoString = email.getText().toString().trim();
                 String emailString = telefonoString + "@ceres.com";
+
                 String passwordString = password.getText().toString();
                 String confirmPasswordString = confirmPassword.getText().toString();
                 String gender = spinnerGender.getSelectedItem().toString();
@@ -87,10 +89,12 @@ public class RegisterProfileActivity extends AppCompatActivity {
                 auth.validateEmailAlreadyInUse(emailString, new AuthCommunication.ValidateEmail() {
                     @Override
                     public void onComplete(boolean resp) {
+
                         if (telefonoString.length() != 10 || !telefonoString.matches("[0-9]+")) {
                             email.setError("Número inválido");
                             return;
                         }
+
                         if(resp){
                             ValidateRegisterInfo validate = new ValidateRegisterInfo();
                             if(validate.validateFirstRegisterInfo(nameString,lastNameString,emailString,passwordString,confirmPasswordString,termsBool,RegisterProfileActivity.this)) {
@@ -103,7 +107,9 @@ public class RegisterProfileActivity extends AppCompatActivity {
                             }
                         }
                         else{
+
                             Toast.makeText(RegisterProfileActivity.this,"Ya existe una cuenta con ese numero. Intenta con otro",Toast.LENGTH_LONG).show();
+
                         }
                     }
                 });

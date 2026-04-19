@@ -37,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButtom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String telefono = emailLogin.getText().toString().trim();
                 String passwordInfo = passwordLogin.getText().toString().trim();
 
@@ -50,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
                 String fakeEmail = telefono + "@ceres.com";
 
                 logginUser(fakeEmail, passwordInfo, LoginActivity.this);
+
             }
         });
 
@@ -72,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
 
                 }else{
+
                     Toast.makeText(context,"No fue posible iniciar sesión, revisa el número y la contraseña", Toast.LENGTH_SHORT).show();
                     emailLogin.setText("");
                     passwordLogin.setText("");
