@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    tools:context=".view.auth.NewToAppActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/im_back_1" />
+
+
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/im_back_3" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_gravity="bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/im_back_2" />
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="@dimen/_186sdp"
+                        android:layout_height="@dimen/_186sdp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/_1sdp"
+                        android:background="@drawable/im_logo_ceres_green" />
+
+                    <ImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="@dimen/_229sdp"
+                        android:layout_height="@dimen/_230sdp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/im_gardener" />
+
+                    <Button
+                        android:id="@+id/createProfileNewToAppActivity"
+                        android:layout_width="@dimen/_263sdp"
+                        android:layout_height="@dimen/_43sdp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/dr_green_button"
+                        android:text="@string/CreateProfile"
+                        android:fontFamily="@font/manropemedium"
+                        android:textAllCaps="false"
+                        android:textSize="@dimen/_18sdp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_gravity="bottom|center"
+                        android:gravity="center"
+                        android:layout_marginBottom="@dimen/_15sdp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_2sdp"
+                            android:text="@string/question1"
+                            android:fontFamily="@font/manroperegular"
+                            android:textColor="@color/gray"
+                            android:textSize="@dimen/_16sdp" />
+
+                        <TextView
+                            android:id="@+id/loginTextNewOnMapActivity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/login_text1"
+                            android:fontFamily="@font/manropemedium"
+                            android:textAllCaps="true"
+                            android:textColor="@color/green"
+                            android:textSize="@dimen/_16sdp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_gravity="bottom|center"
+                        android:gravity="center"
+                        android:layout_marginBottom="@dimen/_15sdp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textViewGuest"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_2sdp"
+                            android:text="@string/question2"
+                            android:fontFamily="@font/manroperegular"
+                            android:textColor="@color/gray"
+                            android:textSize="@dimen/_12sdp" />
+
+                        <TextView
+                            android:id="@+id/guestLogin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/login_text2"
+                            android:fontFamily="@font/manropemedium"
+                            android:textAllCaps="true"
+                            android:textColor="@color/green"
+                            android:textSize="@dimen/_12sdp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
+            </FrameLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
