@@ -64,12 +64,14 @@
                             android:backgroundTint="#F2F3F7"
                             android:ems="10"
 
+
                             android:hint="Correo o número de teléfono"
                             android:inputType="textEmailAddress"
 
                             android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textColorHint="@color/editTextBackground"/>
+
 
                         <EditText
                             android:id="@+id/editTextTextPassword"

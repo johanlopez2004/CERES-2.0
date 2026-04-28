@@ -69,7 +69,9 @@ import java.util.Comparator;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
+
     private Button otherGardensButton, profile, myGardens, collaboration, ludification, rewards, btnCalculadoraCO2;
+
     private ImageButton generateReport;
     private ListView listAviableGardensInfo;
     private FloatingActionButton nextArrow, addButton;
@@ -159,7 +161,9 @@ public class HomeActivity extends AppCompatActivity {
         listAviableGardensInfo = findViewById(R.id.listAviableGardens);
         addButton = (FloatingActionButton) findViewById(R.id.addButton);
         collaboration = (Button) findViewById(R.id.collaboratorGardens);
+
         btnCalculadoraCO2 = findViewById(R.id.btnCalculadoraCO2);
+
         animSlideUp = AnimationUtils.loadAnimation(this, R.anim.slide_right_to_left);
         otherGardensButton = (Button) findViewById(R.id.otherGardensButton);
         profile = (Button) findViewById(R.id.profile);
@@ -300,12 +304,14 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+
         btnCalculadoraCO2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(HomeActivity.this, com.example.opcv.view.gardens.CompostCalculatorActivity.class));
             }
         });
+
 
         generateReport.setOnClickListener(new View.OnClickListener() {
             @Override

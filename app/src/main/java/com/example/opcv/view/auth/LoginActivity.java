@@ -38,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+
                 String usuario = emailLogin.getText().toString().trim();
                 String passwordInfo = passwordLogin.getText().toString().trim();
 
@@ -64,6 +65,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 logginUser(loginCredential, passwordInfo, LoginActivity.this);
 
+
             }
         });
 
@@ -87,7 +89,9 @@ public class LoginActivity extends AppCompatActivity {
 
                 }else{
 
+
                     Toast.makeText(context,"No fue posible iniciar sesión, revisa el correo/número y la contraseña", Toast.LENGTH_SHORT).show();
+
                     emailLogin.setText("");
                     passwordLogin.setText("");
                 }

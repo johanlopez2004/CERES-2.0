@@ -127,9 +127,11 @@
             <ListView
                 android:id="@+id/listAviableGardens"
                 android:layout_width="match_parent"
+
                 android:layout_height="0dp"
                 android:layout_margin="@dimen/_10sdp"
                 android:layout_weight="1">
+
 
             </ListView>
 
@@ -142,6 +144,7 @@
 
                 <Button
                     android:id="@+id/otherGardensButton"
+
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -164,6 +167,7 @@
                 <Button
                     android:id="@+id/btnCalculadoraCO2"
                     android:layout_width="0dp"
+
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginEnd="@dimen/_10sdp"
@@ -173,7 +177,9 @@
                     android:ellipsize="end"
                     android:fontFamily="@font/manropemedium"
                     android:maxLines="1"
+
                     android:text="CO₂"
+
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="16sp" />

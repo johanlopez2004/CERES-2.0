@@ -113,7 +113,9 @@
         <activity
             android:name=".view.gardens.CollaboratorGardensActivity"
             android:exported="false" />
+
         <activity android:name=".view.gardens.CompostCalculatorActivity"/>
+
 
         <provider
             android:name="androidx.core.content.FileProvider"
