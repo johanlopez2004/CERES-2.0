@@ -303,6 +303,7 @@ public class GardenEditActivity extends AppCompatActivity {
                 Intent infoForms = new Intent(GardenEditActivity.this, GardenFormsActivity.class);
                 String idGardenFirebase = extras.getString("idGarden");
                 infoForms.putExtra("idGardenFirebaseDoc",idGardenFirebase);
+                infoForms.putExtra("Register/Forms","Forms");
                 startActivity(infoForms);
             }
         });

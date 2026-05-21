@@ -61,6 +61,35 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <Button
+        android:id="@+id/btnMoreInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:text="Más información"
+        android:visibility="gone"
+        android:backgroundTint="#91BF63"
+        android:textColor="@color/white"
+        android:fontFamily="@font/manropemedium"/>
+
+    <TextView
+        android:id="@+id/totalCo2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:padding="@dimen/_8sdp"
+        android:gravity="center"
+        android:fontFamily="@font/manropemedium"
+        android:textColor="#5C8A3A"
+        android:textSize="@dimen/_14sdp"
+        android:background="#E8F5E0"
+        android:visibility="gone"
+        android:text="" />
+
     <ListView
         android:id="@+id/ListViewRegisters"
         android:layout_width="match_parent"

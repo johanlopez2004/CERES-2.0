@@ -201,6 +201,10 @@
             android:name=".view.adapter.GardenMembersAdapter"
             android:exported="false" />
         <activity
+            android:name=".view.auth.CompostajeInfoActivity"
+            android:exported="false"
+            />
+        <activity
             android:name=".view.gardens.GardenMembersActivity"
             android:exported="false" />
         <activity

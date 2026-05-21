@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer;
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -33,6 +34,7 @@ import com.example.opcv.R;
 import com.example.opcv.business.forms.Forms;
 import com.example.opcv.view.adapter.FormsRegistersAdapter;
 import com.example.opcv.model.items.ItemRegistersList;
+import com.example.opcv.view.auth.CompostajeInfoActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONException;
@@ -43,7 +45,7 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 public class FormsRegistersActivity extends AppCompatActivity {
-    private TextView registerNameText;
+    private TextView registerNameText, totalCo2Text;
     private ListView ListViewRegisters;
     private FloatingActionButton backButtom;
     private String register_name, idGarden;
@@ -96,29 +98,36 @@ public class FormsRegistersActivity extends AppCompatActivity {
         setContentView(R.layout.activity_forms_registers);
 
         registerNameText = (TextView) findViewById(R.id.registerName);
+        totalCo2Text = (TextView) findViewById(R.id.totalCo2);
         ListViewRegisters = (ListView) findViewById(R.id.ListViewRegisters);
         backButtom = findViewById(R.id.returnArrowButtonFormsToGarden);
 
         register_name = getIntent().getStringExtra("Name");
         idGarden = getIntent().getStringExtra("idGardenFirebase");
         registerNameText.setText(register_name);
+        Button btnMoreInfo = findViewById(R.id.btnMoreInfo);
+
+// Solo mostrar el botón si es el formulario de compostaje
+        if (register_name != null && register_name.contains("Compostaje")) {
+            btnMoreInfo.setVisibility(View.VISIBLE);
+        }
+
+        btnMoreInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(FormsRegistersActivity.this, CompostajeInfoActivity.class));
+            }
+        });
         infoWhile = findViewById(R.id.progressBarForms);
 
         infoForms = new Forms(this);
 
-        if(ContextCompat.checkSelfPermission(FormsRegistersActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
-            try {
-                fillFormsRegisters();
-            } catch (JSONException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }else if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)){
-            Toast.makeText(this, "El permiso es necesario para guardar los formularios", Toast.LENGTH_SHORT).show();
-            getStoragePermission.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        }else{
-            getStoragePermission.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        try {
+            fillFormsRegisters();
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
 
         backButtom.setOnClickListener(new View.OnClickListener() {
@@ -184,6 +193,26 @@ public class FormsRegistersActivity extends AppCompatActivity {
         FormsRegistersAdapter adapter = new FormsRegistersAdapter(this, gardenInfoDocument);
         ListViewRegisters.setAdapter(adapter);
         ListViewRegisters.setDividerHeight(5);
+
+        // Calcular total de CO2 evitado (solo para el formulario de compostaje)
+        if (register_name != null && register_name.contains("Compostaje")) {
+            double totalEvitado = 0.0;
+            for (ItemRegistersList item : gardenInfoDocument) {
+                Object co2Obj = item.getInfo().get("co2Evitado");
+                if (co2Obj != null) {
+                    try {
+                        // El valor fue guardado con coma como separador decimal en algunos locales,
+                        // así que reemplazamos por punto para asegurar parseo correcto
+                        String co2Str = co2Obj.toString().replace(",", ".");
+                        totalEvitado += Double.parseDouble(co2Str);
+                    } catch (NumberFormatException e) {
+                        Log.w("FormsRegisters", "No se pudo parsear co2Evitado: " + co2Obj);
+                    }
+                }
+            }
+            totalCo2Text.setText("Total CO2 evitado: " + String.format("%.3f", totalEvitado) + " kg CO2e");
+            totalCo2Text.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

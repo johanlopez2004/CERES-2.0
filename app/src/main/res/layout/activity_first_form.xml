@@ -182,6 +182,20 @@
                 android:inputType="numberDecimal"
                 android:textColor="@color/black" />
 
+            <TextView
+                android:id="@+id/co2Result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_margin="@dimen/_2sdp"
+                android:fontFamily="@font/manropemedium"
+                android:textColor="#5C8A3A"
+                android:textSize="@dimen/_15sdp"
+                android:gravity="center"
+                android:visibility="gone"
+                android:text="" />
+
+
             <Button
                 android:id="@+id/create_forms1_buttom"
                 android:layout_width="match_parent"

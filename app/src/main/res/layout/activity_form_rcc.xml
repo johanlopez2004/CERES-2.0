@@ -163,6 +163,7 @@
                 android:inputType="numberDecimal"
                 android:textColor="@color/black" />
 
+
             <Button
                 android:id="@+id/addForm"
                 android:layout_width="match_parent"

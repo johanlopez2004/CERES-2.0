@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/returnArrowInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="20dp"
+            app:backgroundTint="#91BF63"
+            app:srcCompat="@drawable/dr_return_arrow"
+            android:tint="#F8F5F5"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:text="¿Cómo se calcula?"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:fontFamily="@font/manropebold"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="¿Cómo se calcula el impacto del compostaje?"
+                android:textSize="18sp"
+                android:fontFamily="@font/manropebold"
+                android:textColor="#91BF63"
+                android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/manroperegular"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginBottom="20dp"
+                android:text="Cuando compostas tus residuos orgánicos en lugar de enviarlos al relleno sanitario, estás ayudando al medio ambiente. Pero, ¿cuánto exactamente?"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="¿Qué es un relleno sanitario?"
+                android:textSize="16sp"
+                android:fontFamily="@font/manropebold"
+                android:textColor="#91BF63"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/manroperegular"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginBottom="20dp"
+                android:text="Es el lugar donde van a parar los residuos cuando los recoge el camión de basura. Ahí los residuos se pudren y sueltan gases dañinos para el ambiente."/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="¿Qué pasa cuando compostas?"
+                android:textSize="16sp"
+                android:fontFamily="@font/manropebold"
+                android:textColor="#91BF63"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/manroperegular"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginBottom="20dp"
+                android:text="Los mismos residuos, en lugar de pudrirse solos, se convierten en abono para tu huerta. Este proceso también suelta algunos gases, pero muchísimo menos que en el relleno."/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="¿Qué son las emisiones evitadas?"
+                android:textSize="16sp"
+                android:fontFamily="@font/manropebold"
+                android:textColor="#91BF63"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/manroperegular"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginBottom="20dp"
+                android:text="Es la diferencia entre los gases que se hubieran producido en el relleno sanitario y los que realmente se produjeron al compostar. Mientras más residuos compostes, más emisiones evitas."/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="¿Y el transporte?"
+                android:textSize="16sp"
+                android:fontFamily="@font/manropebold"
+                android:textColor="#91BF63"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/manroperegular"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginBottom="32dp"
+                android:text="También se tiene en cuenta el combustible que gastan los camiones para llevar los residuos, tanto al relleno como a la planta de compostaje."/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/manroperegular"
+                android:textColor="#888888"
+                android:textSize="12sp"
+                android:text="Fuente: Instituto Meteorológico Nacional de Costa Rica (IMN), 2025."/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

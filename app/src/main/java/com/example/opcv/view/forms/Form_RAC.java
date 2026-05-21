@@ -47,7 +47,7 @@ public class Form_RAC extends AppCompatActivity {
     private FloatingActionButton backButtom;
     private Button addFormButtom, rewards, myGardens, profile, ludification;
 
-    private TextView formsName;
+    private TextView formsName, co2Result;
 
     private EditText containerSize,worrmsWeightInfo,humidityInfo,amount_of_waste_info,collected_humus_info,amount_leached_info;
     private String name, watch, idGarden, idCollection;
@@ -69,6 +69,7 @@ public class Form_RAC extends AppCompatActivity {
         amount_of_waste_info = findViewById(R.id.amount_of_waste_info);
         collected_humus_info = findViewById(R.id.collected_humus_info);
         amount_leached_info = findViewById(R.id.amount_leached_info);
+        co2Result = findViewById(R.id.co2Result);
         rewards = (Button) findViewById(R.id.rewards);
         myGardens = (Button) findViewById(R.id.myGardens);
         profile = (Button) findViewById(R.id.profile);
@@ -132,16 +133,7 @@ public class Form_RAC extends AppCompatActivity {
             public void onClick(View view) {
                 watch = getIntent().getStringExtra("watch");
                 if(watch.equals("create")){
-                    if (ContextCompat.checkSelfPermission(Form_RAC.this,
-                            Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
-                            ContextCompat.checkSelfPermission(Form_RAC.this,
-                                    Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                        // Si no se han otorgado los permisos, solicítalos.
-                        requestStoragePermission();
-                    } else {
-                        // El permiso ya ha sido concedido, crea la instancia de la clase Forms
-                        createNewForm();
-                    }
+                    createNewForm();
                 }
 
                 if(watch.equals("edit")){
@@ -173,6 +165,13 @@ public class Form_RAC extends AppCompatActivity {
         collected_humus_info.setText((CharSequence) info.get("collected humus"));
         amount_leached_info.setText((CharSequence) info.get("amount leached"));
 
+        // Mostrar el CO2 evitado guardado en este registro
+        Object co2EvitadoObj = info.get("co2Evitado");
+        if (co2EvitadoObj != null) {
+            co2Result.setText("CO2 Evitado: " + co2EvitadoObj.toString() + " kg CO2e");
+            co2Result.setVisibility(View.VISIBLE);
+        }
+
         switch (status){
             case "true":
                 addFormButtom.setVisibility(View.GONE);
@@ -198,27 +197,42 @@ public class Form_RAC extends AppCompatActivity {
 
         idGardenFb = getIntent().getStringExtra("idGardenFirebase");
 
-        Map<String,Object> infoForm = new HashMap<>();
-        infoForm.put("idForm",1);
-        infoForm.put("nameForm",nameForm);
-        infoForm.put("containerSize",container);
-        infoForm.put("wormsWeight",worms);
-        infoForm.put("humidity",humidity);
-        infoForm.put("amount of waste",waste);
-        infoForm.put("collected humus",humus);
-        infoForm.put("amount leached",leached);
-        if(validateField(container, worms, humidity, waste, humus, leached)){
-
-            Forms newForm = new com.example.opcv.business.forms.Forms(Form_RAC.this);
-            newForm.createFormInfo(infoForm, idGardenFb);
-
-            Notifications notifications = new Notifications();
-            notifications.notification("Formulario creado", "Felicidades! El formulario fue registrada satisfactoriamente", Form_RAC.this);
-
-            Toast.makeText(Form_RAC.this, "Se ha creado el Formulario con Exito", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(Form_RAC.this, HomeActivity.class));
-            finish();
+        if(!validateField(container, worms, humidity, waste, humus, leached)){
+            return;
         }
+
+        // ===== CÁLCULO DE CO2 (basado en CompostCalculatorActivity) =====
+        double kg = Double.parseDouble(waste);
+        double relleno = kg * 0.0519 * 28;
+        double compostCH4 = kg * 0.004 * 28;
+        double compostN2O = kg * 0.00024 * 265;
+        double compost = compostCH4 + compostN2O;
+        double evitado = relleno - compost;
+        // ================================================================
+
+        Map<String,Object> infoForm = new HashMap<>();
+        infoForm.put("idForm", 1);
+        infoForm.put("nameForm", nameForm);
+        infoForm.put("containerSize", container);
+        infoForm.put("wormsWeight", worms);
+        infoForm.put("humidity", humidity);
+        infoForm.put("amount of waste", waste);
+        infoForm.put("collected humus", humus);
+        infoForm.put("amount leached", leached);
+        // Guardar resultados del cálculo de CO2
+        infoForm.put("co2Relleno", String.format("%.3f", relleno));
+        infoForm.put("co2Compost", String.format("%.3f", compost));
+        infoForm.put("co2Evitado", String.format("%.3f", evitado));
+
+        Forms newForm = new com.example.opcv.business.forms.Forms(Form_RAC.this);
+        newForm.createFormInfo(infoForm, idGardenFb);
+
+        Notifications notifications = new Notifications();
+        notifications.notification("Formulario creado", "Felicidades! El formulario fue registrada satisfactoriamente", Form_RAC.this);
+
+        Toast.makeText(Form_RAC.this, "Formulario creado. CO2 evitado: " + String.format("%.3f", evitado) + " kg", Toast.LENGTH_LONG).show();
+        startActivity(new Intent(Form_RAC.this, HomeActivity.class));
+        finish();
     }
 
     private void updateForm(Map<String, Object> oldInfo) throws JSONException, IOException{

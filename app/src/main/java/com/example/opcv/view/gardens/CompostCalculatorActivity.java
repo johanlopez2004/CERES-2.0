@@ -2,11 +2,14 @@
 package com.example.opcv.view.gardens;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 
 import com.example.opcv.R;
+import com.example.opcv.view.auth.CompostajeInfoActivity;
 
 public class CompostCalculatorActivity extends AppCompatActivity {
 
@@ -25,6 +28,10 @@ public class CompostCalculatorActivity extends AppCompatActivity {
         resultCompost = findViewById(R.id.resultCompost);
         resultEvitado = findViewById(R.id.resultEvitado);
 
+        Button btnMasInfo = findViewById(R.id.btnMasInfo);
+        btnMasInfo.setOnClickListener(v -> {
+            startActivity(new Intent(CompostCalculatorActivity.this, CompostajeInfoActivity.class));
+        });
         ImageButton btnBack = findViewById(R.id.btnBack);
 
         btnBack.setOnClickListener(v -> {

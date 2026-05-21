@@ -239,16 +239,7 @@ public class Form_RE extends AppCompatActivity {
                     }
 
                     if(watch.equals("create")){
-                        if (ContextCompat.checkSelfPermission(Form_RE.this,
-                                Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
-                                ContextCompat.checkSelfPermission(Form_RE.this,
-                                        Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                            // Si no se han otorgado los permisos, solicítalos.
-                            requestStoragePermission();
-                        } else {
-                            // El permiso ya ha sido concedido, crea la instancia de la clase Forms
-                            createNewForm();
-                        }
+                        createNewForm();
                     }
 
                 if(watch.equals("edit")){

@@ -126,16 +126,7 @@ public class Form_RHC extends AppCompatActivity {
             public void onClick(View view) {
                 watch = getIntent().getStringExtra("watch");
                 if(watch.equals("create")) {
-                    if (ContextCompat.checkSelfPermission(Form_RHC.this,
-                            Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
-                            ContextCompat.checkSelfPermission(Form_RHC.this,
-                                    Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                        // Si no se han otorgado los permisos, solicítalos.
-                        requestStoragePermission();
-                    } else {
-                        // El permiso ya ha sido concedido, crea la instancia de la clase Forms
-                        createNewForm();
-                    }
+                    createNewForm();
                 }
                 if (watch.equals("edit")){
                     try {
