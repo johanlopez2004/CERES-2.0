@@ -168,7 +168,7 @@ public class Form_RAC extends AppCompatActivity {
         // Mostrar el CO2 evitado guardado en este registro
         Object co2EvitadoObj = info.get("co2Evitado");
         if (co2EvitadoObj != null) {
-            co2Result.setText("CO2 Evitado: " + co2EvitadoObj.toString() + " kg CO2e");
+            co2Result.setText("CO2 Evitado: " + co2EvitadoObj.toString() + " ton CO2e");
             co2Result.setVisibility(View.VISIBLE);
         }
 
@@ -203,10 +203,20 @@ public class Form_RAC extends AppCompatActivity {
 
         // ===== CÁLCULO DE CO2 (basado en CompostCalculatorActivity) =====
         double kg = Double.parseDouble(waste);
-        double relleno = kg * 0.0519 * 28;
-        double compostCH4 = kg * 0.004 * 28;
-        double compostN2O = kg * 0.00024 * 265;
+        double toneladas = kg / 1000.0;
+
+        // Si los residuos van al relleno sanitario: emiten CH4 (metano)
+        // Factor: 0.0519 ton CH4/ton residuo × 28 (GWP del CH4)
+        double relleno = toneladas * 0.0519 * 28;
+
+        // Si los residuos se compostan: emiten un poco de CH4 y N2O
+        // CH4: 0.004 ton CH4/ton residuo × 28
+        // N2O: 0.00024 ton N2O/ton residuo × 265 (GWP del N2O)
+        double compostCH4 = toneladas * 0.004 * 28;
+        double compostN2O = toneladas * 0.00024 * 265;
         double compost = compostCH4 + compostN2O;
+
+        // Lo que evitas al compostar en vez de tirar al relleno
         double evitado = relleno - compost;
         // ================================================================
 
@@ -220,9 +230,9 @@ public class Form_RAC extends AppCompatActivity {
         infoForm.put("collected humus", humus);
         infoForm.put("amount leached", leached);
         // Guardar resultados del cálculo de CO2
-        infoForm.put("co2Relleno", String.format("%.3f", relleno));
-        infoForm.put("co2Compost", String.format("%.3f", compost));
-        infoForm.put("co2Evitado", String.format("%.3f", evitado));
+        infoForm.put("co2Relleno", String.format("%.6f", relleno));
+        infoForm.put("co2Compost", String.format("%.6f", compost));
+        infoForm.put("co2Evitado", String.format("%.6f", evitado));
 
         Forms newForm = new com.example.opcv.business.forms.Forms(Form_RAC.this);
         newForm.createFormInfo(infoForm, idGardenFb);
@@ -230,7 +240,7 @@ public class Form_RAC extends AppCompatActivity {
         Notifications notifications = new Notifications();
         notifications.notification("Formulario creado", "Felicidades! El formulario fue registrada satisfactoriamente", Form_RAC.this);
 
-        Toast.makeText(Form_RAC.this, "Formulario creado. CO2 evitado: " + String.format("%.3f", evitado) + " kg", Toast.LENGTH_LONG).show();
+        Toast.makeText(Form_RAC.this, "Formulario creado. CO2 evitado: " + String.format("%.6f", evitado) + " ton CO2e", Toast.LENGTH_LONG).show();
         startActivity(new Intent(Form_RAC.this, HomeActivity.class));
         finish();
     }
@@ -282,7 +292,21 @@ public class Form_RAC extends AppCompatActivity {
             Toast.makeText(this, "Es necesario Ingresar la humedad", Toast.LENGTH_SHORT).show();
             return false;
         }
-        else if(waste.isEmpty()){
+        else {
+            // Validar que la humedad sea un número entre 0 y 100
+            try {
+                double humedadValor = Double.parseDouble(humidity);
+                if (humedadValor < 0 || humedadValor > 100) {
+                    Toast.makeText(this, "La humedad debe ser un valor entre 0 y 100 (%)", Toast.LENGTH_SHORT).show();
+                    return false;
+                }
+            } catch (NumberFormatException e) {
+                Toast.makeText(this, "La humedad debe ser un número válido", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        }
+
+        if(waste.isEmpty()){
             Toast.makeText(this, "Es necesario Ingresar la cantidad de residuos", Toast.LENGTH_SHORT).show();
             return false;
         }else if(humus.isEmpty()){

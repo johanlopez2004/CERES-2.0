@@ -210,7 +210,7 @@ public class FormsRegistersActivity extends AppCompatActivity {
                     }
                 }
             }
-            totalCo2Text.setText("Total CO2 evitado: " + String.format("%.3f", totalEvitado) + " kg CO2e");
+            totalCo2Text.setText("Total CO2 evitado: " + String.format("%.6f", totalEvitado) + " ton CO2e");
             totalCo2Text.setVisibility(View.VISIBLE);
         }
     }

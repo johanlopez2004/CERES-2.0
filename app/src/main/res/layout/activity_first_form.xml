@@ -109,7 +109,7 @@
                 android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/humedad" />
+                android:text="Humedad (%) - valor entre 0 y 100" />
 
             <EditText
                 android:id="@+id/humidityInfo"
@@ -118,7 +118,8 @@
                 android:fontFamily="@font/manroperegular"
                 android:ems="10"
                 android:layout_margin="@dimen/_2sdp"
-                android:inputType="textPersonName"
+                android:inputType="numberDecimal"
+                android:hint="Ej: 60"
                 android:background="@drawable/dr_white_input_text"
                 android:textColor="@color/black"/>
 
